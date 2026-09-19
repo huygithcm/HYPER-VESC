@@ -1,0 +1,3 @@
+[submodule "esp32s3-vesc-bms"]
+	path = esp32s3-vesc-bms
+	url = https://github.com/huygithcm/esp32p4-android-auto.git

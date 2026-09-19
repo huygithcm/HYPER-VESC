@@ -21,8 +21,8 @@
 #ifdef LV_REALDEVICE
 #include "vesc_limits.h"
 #include "vesc_battery_calc.h"
-int cruise_active = 0;
 #endif
+int cruise_active = 0;
 
 /*********************
  *      DEFINES
