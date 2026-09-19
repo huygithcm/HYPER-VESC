@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "lv_demo_music.h": "c",
-        "settings.h": "c",
-        "vesc_limits.h": "c"
-    },
-    "cmake.sourceDirectory": "C:/Super_VESC_DIsplay/Super_VESC_Display"
-}
