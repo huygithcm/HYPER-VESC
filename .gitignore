@@ -26,3 +26,25 @@ __pycache__/
 # Unused QNX port; retain its documentation.
 /Super_VESC_Display/ports/qnx/*
 !/Super_VESC_Display/ports/qnx/*.md
+
+# Keep the remote focused on the 7B build and documentation.
+.DS_Store
+/.gitmodules
+/esp32s3-vesc-bms/
+/3d-model/
+/media/
+/example_UI/
+/simulator/7b/review/
+/test/*
+!/test/README
+/lisp/*.lisp
+/scripts/monitor_7b.py
+/Super_VESC_Display/lvgl/env_support/
+/Super_VESC_Display/lvgl/CMakeLists.txt
+/Super_VESC_Display/lvgl/lvgl.mk
+/Super_VESC_Display/ports/linux/**
+!/Super_VESC_Display/ports/linux/**/
+!/Super_VESC_Display/ports/linux/**/*.md
+!/Super_VESC_Display/ports/linux/**/LICENSE*
+!/Super_VESC_Display/ports/linux/lv_drivers/docs/**
+!/Super_VESC_Display/ports/linux/lv_drivers/win32drv/**

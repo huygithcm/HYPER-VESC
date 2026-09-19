@@ -20,9 +20,9 @@ Toolchain pin: pioarduino 55.03.311 / Arduino 3.3.11 / ESP-IDF 5.5.5, NimBLE-Ard
 - `ui/7b`: giao diện Dashboard, Ride modes, BMS và Settings.
 - `simulator/7b`: host Windows, dữ liệu mẫu chỉ dành cho duyệt UI.
 - `Super_VESC_Display/lvgl` và `ports`: LVGL cùng driver host đang dùng.
-- `esp32s3-vesc-bms`: repo seed tham khảo và font Antonio; cần giữ để build.
-- `lisp/main.lisp`: script chạy trên ESC; build màn không tự nạp script này vào ESC.
-- `archive/legacy-4inch`: mã/project cũ đã loại khỏi build; [phạm vi dọn code](docs/CLEANUP_7B.md).
+- `ui/7b/fonts`: bốn font Antonio cần cho build, kèm giấy phép; không cần submodule.
+- Script ESC và các nguồn tham khảo được giữ local, không nằm trong bản nguồn build trên remote.
+- `archive/legacy-4inch`: chỉ giữ tài liệu trên remote; mã/project cũ được giữ local.
 
 ## Thao tác
 
