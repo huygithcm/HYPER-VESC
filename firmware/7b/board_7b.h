@@ -50,6 +50,11 @@
 #define PIN_I2C_SCL 9
 #define I2C_HZ      400000
 
+// -------------------------------------------------------------------- CAN ---
+// USB/CAN share these pins; select CAN with IOEXP_CAN_SEL before TWAI starts.
+#define PIN_CAN_TX 20
+#define PIN_CAN_RX 19
+
 // ----------------------------------------------------------- IO expander ---
 // Board het sach chan GPIO nen den nen / reset LCD / reset touch / CS the SD
 // deu nam sau con expander nay. Giao thuc: ghi 2 byte {thanh_ghi, gia_tri}.
@@ -65,6 +70,7 @@
 #define IOEXP_LCD_RST   3  // IO3
 #define IOEXP_SD_CS     4  // IO4
 #define IOEXP_CAN_SEL   5  // IO5: 0 = USB, 1 = CAN
+#define IOEXP_LCD_VDD_EN 6 // IO6: panel voltage enable; separate from IO3 reset
 
 // ------------------------------------------------------------------ Touch ---
 // GT911 chon dia chi luc reset theo muc chan INT: giu INT thap -> 0x5D.

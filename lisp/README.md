@@ -1,5 +1,13 @@
 # VESC LISP script
 
+Current snapshot (2026-09-30): [main.lisp](main.lisp) is the published P4
+`fix/gear-circle-park-reverse` script at `451e139`, including the reverse brake
+release fix from `e44be16`. See [CAN/S3 alignment](../docs/CAN_P4_S3_ALIGNMENT.md)
+for its source hash, format-2 compatibility and validation limits. It runs on
+the ESC and is not installed by building or flashing the S3 display.
+The walkthrough below predates the format-2 absolute-current ride modes;
+its fixed speed-profile examples do not describe the current script.
+
 `main.lisp` runs on the **VESC controller's** built-in LISP runtime (not on
 the ESP32-P4). It does three things that the dashboard relies on:
 

@@ -1,5 +1,10 @@
 # Tài liệu tham khảo: Lisp settings qua CAN
 
+**Cập nhật 2026-09-30:** cấu hình CAN 7B và bản Lisp đã công bố được đối chiếu
+theo nhánh P4 `fix/gear-circle-park-reverse`, commit `451e139`.
+Xem [cấu hình CAN, Lisp và pinout hiện tại](CAN_P4_S3_ALIGNMENT.md).
+Phần còn lại bên dưới giữ nguyên nội dung tham khảo lịch sử ngày 2026-09-17.
+
 Xem [đánh giá tương thích và luồng tích hợp](LISP_COMPATIBILITY_REVIEW.md) trước khi thay script hiện tại.
 
 Repo tham khảo: [huygithcm/esp32p4-android-auto](https://github.com/huygithcm/esp32p4-android-auto).

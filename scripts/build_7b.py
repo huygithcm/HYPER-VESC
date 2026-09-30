@@ -1,7 +1,7 @@
 Import("env")
 from pathlib import Path
 root = Path(env.subst("$PROJECT_DIR"))
-env.Append(CPPPATH=[str(root / "ui/7b"), str(root / "firmware/7b"),
+env.Append(CPPPATH=[str(root / "include"), str(root / "ui/7b"), str(root / "firmware/7b"),
                    str(root / "firmware/7b/bms/include"),
                    str(root / "firmware/7b/vesc/include"),
                    str(root / "Super_VESC_Display/lvgl")])

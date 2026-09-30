@@ -1,5 +1,38 @@
 # Triển khai firmware 7B
 
+## Build và flash ngày 2026-09-30
+
+Đã build và nạp environment `waveshare-7b` vào COM9 (CH343 VID:PID 1A86:55D3).
+Esptool nhận ESP32-S3 revision v0.2, flash 16 MB, PSRAM 8 MB và xác minh hash
+cả bootloader, partition table, boot_app0, application; upload kết thúc SUCCESS.
+
+- Đã sửa `scripts/build_7b.py` để thêm `include/` vào CPPPATH của các nguồn UI
+  biên dịch riêng. Build/link thực tế thành công sau sửa.
+- RAM tĩnh: 43.344 / 327.680 byte; flash chương trình: 1.091.651 / 6.553.600 byte.
+- `.pio/build/waveshare-7b/firmware.bin`: 1.102.624 byte,
+  SHA256 `a628533a2903d085c94d166c11891d8066c2e4506b4b1544f58e5188faae74fd`.
+- Lần upload đầu gặp lỗi hiển thị tiến độ `UnicodeEncodeError` (cp1252);
+  đã dừng và nạp lại đầy đủ với `PYTHONUTF8=1`, `PYTHONIOENCODING=utf-8`.
+
+Log sau reset: `FLASH=16777216 PSRAM=8388608`, GT911 `911` ở `0x5d`,
+`READY 1024x600 RGB565 double framebuffer; hardware UI`.
+CAN TX20/RX19, **500 kbit/s, local ID 2, target ID 11**. ID 11 là giá trị
+đã lưu trên màn; mặc định source là 10 và không ghi đè setting hợp lệ.
+
+Đã đọc UART trong 35 giây, log lưu tại
+`.pio/verification/boot-7b-2026-09-30.log`. Health tới uptime 30.318 ms:
+96 frame, `timeouts=0`, heap nội 126.672 byte, PSRAM trống 5.867.096 byte;
+không thấy panic/reboot sau lần reset chủ động. Touch controller được nhận,
+nhưng không có lần chạm trong mẫu (`touch=0`), chưa xác nhận hình ảnh bằng mắt.
+
+**CAN chưa đạt:** log liên tục `TWAI bus-off` và phục hồi. Chưa có bằng chứng
+giao tiếp VESC thành công; cần kiểm tra ESC có nối/cấp nguồn, CAN H/L/GND,
+termination và bitrate. Sai target ID đơn thuần không giải thích bus-off.
+Không nạp Lisp vào ESC trong bước flash màn này.
+
+[Cấu hình CAN và pinout](CAN_P4_S3_ALIGNMENT.md). Các kết quả dưới đây thuộc
+lần triển khai trước ngày 2026-09-30.
+
 Ngày 2026-09-18. Đã build và nạp thành công trên COM9, esptool xác minh hash flash. Người dùng xác nhận giao diện hiển thị đủ và cảm ứng bấm đúng vị trí. Đã nạp bản sửa 16 MHz; người dùng xác nhận hết nháy đường dọc trên màn thật.
 
 ## Cấu hình

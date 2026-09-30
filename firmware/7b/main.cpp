@@ -18,6 +18,7 @@ void setup() {
     if(!ioexpBegin()) {Serial.println("IO expander failed"); abort();}
     ioexpWrite(IOEXP_BACKLIGHT,false);
     ioexpWrite(IOEXP_CAN_SEL,true);
+    ioexpWrite(IOEXP_LCD_VDD_EN,true);
     ioexpWrite(IOEXP_LCD_RST,false); delay(20);
     ioexpWrite(IOEXP_LCD_RST,true); delay(120);
     if(!gt911Begin()) {Serial.println("GT911 failed"); abort();}

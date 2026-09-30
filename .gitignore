@@ -38,6 +38,7 @@ __pycache__/
 /test/*
 !/test/README
 /lisp/*.lisp
+!/lisp/main.lisp
 /scripts/monitor_7b.py
 /Super_VESC_Display/lvgl/env_support/
 /Super_VESC_Display/lvgl/CMakeLists.txt

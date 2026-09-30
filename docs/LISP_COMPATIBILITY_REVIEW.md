@@ -1,5 +1,9 @@
 # Đánh giá tương thích khi chuyển sang Lisp mới
 
+**Ghi chú 2026-09-30:** đây là đánh giá lịch sử trước port 7B. Backend 7B hiện
+đã có ride-mode format 2; xem [đối chiếu P4/S3 mới](CAN_P4_S3_ALIGNMENT.md)
+để biết phạm vi đã cập nhật và các phần chưa tích hợp.
+
 Ngày: 2026-09-17. Phạm vi: đối chiếu source Super VESC Display hiện tại với `lisp/main.lisp` và các module panel của `huygithcm/esp32p4-android-auto`, commit `842b25ea498c9e341c28e530cf6621fce5919c0a`.
 
 “Lisp mới” trong tài liệu là script của repo tham khảo trên, không phải một bản script khác do người dùng sửa. [Nguồn và các liên kết theo commit](LISP_SETTINGS_REFERENCE.md). Đây là review tĩnh, chưa upload script, chưa chạy motor và chưa xác nhận phiên bản firmware VESC thực tế.

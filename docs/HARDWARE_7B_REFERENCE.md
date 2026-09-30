@@ -1,5 +1,9 @@
 # Phần cứng đích: Waveshare ESP32-S3-Touch-LCD-7B
 
+**Đối chiếu 2026-09-30:** [pinout hiện tại và CAN P4/S3](CAN_P4_S3_ALIGNMENT.md)
+đã kiểm tra Wiki, sơ đồ và demo hãng. EXIO3 là LCD reset; EXIO6 là nguồn LCD,
+cả hai đều có trên sơ đồ. Nội dung port bên dưới là ghi nhận lịch sử.
+
 **Cập nhật 2026-09-18:** đã đọc board thật tại COM9: flash **16 MB**, embedded PSRAM **8 MB**, ESP32-S3 revision v0.2. Xem [biên bản kiểm tra COM9](COM9_HARDWARE_CHECK.md). Tài liệu hãng hiện xác nhận CAN TX GPIO20 / RX GPIO19; thông tin này bổ sung cho các điểm chưa xác minh khi đọc repo bên dưới.
 
 Người dùng xác nhận đang sử dụng màn hình 7 inch trong nhánh [bambu-p1s-led / feat/display-ui](https://github.com/huygithcm/bambu-p1s-led/tree/feat/display-ui). Đây là phần cứng đích cho công việc tiếp theo của Super VESC Display.

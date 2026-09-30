@@ -10,7 +10,7 @@ foreach(SIZE 32 40 64 200)
 endforeach()
 add_executable(vesc_7b_simulator WIN32 main.c "${ROOT}/ui/7b/preview_ui.c" ${LV_SOURCES} ${FONTS}
     "${UI}/ports/linux/lv_drivers/win32drv/win32drv.c")
-target_include_directories(vesc_7b_simulator PRIVATE . "${ROOT}/ui/7b" "${UI}" "${UI}/lvgl"
+target_include_directories(vesc_7b_simulator PRIVATE . "${ROOT}/include" "${ROOT}/ui/7b" "${UI}" "${UI}/lvgl"
     "${UI}/ports/linux/lv_drivers/win32drv")
 target_compile_definitions(vesc_7b_simulator PRIVATE LV_CONF_INCLUDE_SIMPLE
     LV_CONF_PATH=${CMAKE_CURRENT_SOURCE_DIR}/lv_conf.h LV_DRV_NO_CONF USE_WIN32DRV=1

@@ -3,6 +3,7 @@
  */
 #include "preview_ui.h"
 #include "branding.h"
+#include "can_config_7b.h"
 #include "lvgl.h"
 #include <stdint.h>
 #include <stdio.h>
@@ -52,7 +53,7 @@ static lv_obj_t *reverse_button;
 static preview_page_t current_page;
 static preview_scenario_t scenario;
 static int draft_amps[3] = {50, 70, 100}, saved_amps[3] = {50, 70, 100};
-static int target_id = 10, brightness = 80, active_mode = 0, bms_tab;
+static int target_id = CAN_7B_DEFAULT_TARGET_ID, brightness = 80, active_mode = 0, bms_tab;
 static bool reverse_enabled, animate_demo;
 static uint32_t toast_until, tick_count;
 static int demo_speed;
@@ -478,21 +479,27 @@ static void brightness_cb(lv_event_t *e) {
 #endif
 }
 static void target_cb(lv_event_t *e) {
-    int next = target_id + (int)(intptr_t)lv_event_get_user_data(e);
+    int step = (int)(intptr_t)lv_event_get_user_data(e);
+    int next = target_id + step;
+    if(next == CAN_7B_LOCAL_ID) next += step;
+    if(!can_7b_target_valid(next)) return;
 #ifdef UI_7B_HARDWARE
-    if(next<0 || next>253) return;
+    if(!backend_set_target(next)) {
+        toast("Could not save CAN target. Try again.");
+        return;
+    }
 #endif
-    if (next >= 0 && next <= 253) target_id = next;
+    target_id = next;
     lv_label_set_text_fmt(target_value, "%d", target_id);
 #ifdef UI_7B_HARDWARE
-    toast(backend_set_target(target_id) ? "Target saved. Restart display to apply." : "Target must be 0..253; 254 is this display.");
+    toast("Target saved. Restart display to apply.");
 #else
     toast("Preview target changed. No CAN connection.");
 #endif
 }
 static void reset_cb(lv_event_t *e) {
-    (void)e; target_id = 10;
-    lv_label_set_text(target_value, "10");
+    (void)e; target_id = CAN_7B_DEFAULT_TARGET_ID;
+    lv_label_set_text_fmt(target_value, "%d", target_id);
     draft_amps[0] = saved_amps[0] = 50; draft_amps[1] = saved_amps[1] = 70; draft_amps[2] = saved_amps[2] = 100;
     reverse_enabled = false; set_button_text(reverse_button, "Disabled");
     refresh_modes(); preview_ui_scenario(PREVIEW_PARK);
@@ -523,7 +530,9 @@ static void settings_page(void) {
     target_value = text(can, "10", 283, 59, 87, F24, WHITE, CENTER);
     lv_label_set_text_fmt(target_value,"%d",target_id);
     button(can, "+", 378, 51, 56, 48, target_cb, 1, 0);
-    text(can, "CAN baudrate   1000 kbit/s", 20, 126, 424, F16, MUTED, LEFT);
+    lv_obj_t *bus = text(can, "", 20, 126, 424, F16, MUTED, LEFT);
+    lv_label_set_text_fmt(bus, "CAN %d kbit/s  /  Display ID %d",
+                          CAN_7B_BITRATE_KBPS, CAN_7B_LOCAL_ID);
     lv_obj_t *info = box(p, 32, 265, 960, 105, PANEL, LINE, 14);
     text(info, "DISPLAY HARDWARE", 20, 17, 450, F16, MUTED, LEFT);
     text(info, "1024 x 600   /   16 MB flash   /   8 MB PSRAM", 20, 55, 910, F20, WHITE, LEFT);
